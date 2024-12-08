@@ -174,8 +174,8 @@ body.pynode .pageBanner {
     color: white;
 }
 
-body.pynode .pageTopWrapper {
-    height: 500px;
+body.pynode .pageBottomWrapper {
+    height: 1000px;
     position: relative;
 }
 
@@ -452,12 +452,6 @@ body.pynode .appSectionBarIconDivider, body.pynode_editor .appSectionBarIconDivi
 
 }
 
-body.pynode .pageBottomWrapper {
-    height: 400px;
-    height: auto;
-    position: relative;
-}
-
 body.pynode .pynodeGithubStar {
     float: right;
     height: 50px;
@@ -550,7 +544,7 @@ body.pynode li {
 
 /* GENERAL
    ================================================== */
-.pageTop {
+.pageBottom {
     width: 750px;
     height: calc(100% - 70px);
     margin-top: 50px;
@@ -560,18 +554,6 @@ body.pynode li {
     padding-left: 50px;
     padding-right: 50px;
     padding-top: 40px;
-}
-
-.pageWhole {
-    width: 750px;
-    margin-left: calc(50% - 425px);
-    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.15);
-    background-color: white;
-    padding-left: 50px;
-    padding-right: 50px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    margin-top: 30px;
 }
 
 body .floatLeft {
