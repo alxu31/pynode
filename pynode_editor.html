@@ -37,37 +37,116 @@
         </div>
     </div>
 </div>
-<script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/ace/mode-python.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/ace/ext-language-tools.js" type="text/javascript" charset="utf-8"></script>
+
 <script>
-    editor_resize();
-    var editor = ace.edit("editor");
-    function getCode() {
-        return editor.getValue();
-    }
+    // Configure paths for Monaco globally
+    var require = {
+      paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs' }
+    };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.nls.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.js"></script>
+
+<script>
+    resize();
+
+    monaco.editor.defineTheme('default', {
+        "base": "vs-dark",
+        "inherit": true,
+        "rules": [
+            {
+            "token": "keyword",
+            "foreground": "FF69B4" // Hot pink for keywords
+            },
+            {
+            "token": "identifier",
+            "foreground": "FFC0CB" // Light pink for identifiers
+            },
+            {
+            "token": "string",
+            "foreground": "FFB6C1" // Lighter pink for strings
+            },
+            {
+            "token": "number",
+            "foreground": "FF1493" // Deep pink for numbers
+            },
+            {
+            "token": "type",
+            "foreground": "FF69B4" // Hot pink for types
+            },
+            {
+            "token": "comment",
+            "foreground": "EE82EE", // Violet for comments
+            "fontStyle": "italic"
+            },
+            {
+            "token": "variable",
+            "foreground": "FFC0CB" // Light pink for variables
+            },
+            {
+            "token": "function",
+            "foreground": "FF69B4" // Hot pink for functions
+            },
+            {
+            "token": "operator",
+            "foreground": "FF1493" // Deep pink for operators
+            }
+        ],
+        "colors": {
+            "editor.background": "#2E2E3E", // Dark grey background
+            "editor.foreground": "#FFC0CB", // Light pink foreground text
+            "editor.lineHighlightBackground": "#3E3E4E", // Slightly lighter grey for line highlights
+            "editor.selectionBackground": "#FF69B420", // Translucent hot pink for selection
+            "editorCursor.foreground": "#FF69B4", // Hot pink cursor
+            "editorWhitespace.foreground": "#5C5C6E" // Subtle grey for whitespace
+        }
+    });
+
+    monaco.editor.setTheme('default');
+
+    const editor = monaco.editor.create(document.getElementById('editor'), {
+        language: "python",
+        automaticLayout: true,
+    });
+
     function setCode(src) {
         if (enable_editor) {
-            editor.setValue(src, -1);
+            editor.setValue(src);
         }
     }
 
-    var openerSrc = window.opener.editor.getValue();
+    const openerSrc = window.opener?.editor?.getValue();
     if (openerSrc !== undefined) {
-        editor.setValue(openerSrc, -1);
+        editor.setValue(openerSrc);
     }
-    var PythonMode = ace.require("ace/mode/python").Mode;
-    editor.session.setMode(new PythonMode());
-    ace.require("ace/ext/language_tools");
-    editor.setOptions({
-        fontSize: "11pt",
-        enableBasicAutocompletion: true
+
+    monaco.languages.registerCompletionItemProvider('python', {
+        provideCompletionItems: () => {
+            return {
+                suggestions: [
+                    {
+                        label: 'print',
+                        kind: monaco.languages.CompletionItemKind.Function,
+                        insertText: 'print(${1})',
+                        insertTextRules: monaco.languages.CompletionItemInsertTextRule.InsertAsSnippet,
+                        documentation: 'Print to the console',
+                    },
+                ],
+            };
+        },
     });
-    editor.on("change", function () {
+
+    editor.onDidChangeModelContent(() => {
         enable_editor = false;
-        if (window.opener.enable_editor) window.opener.setCode(editor.getValue());
+        if (window.opener?.enable_editor) {
+            window.opener.setCode(editor.getValue());
+        }
         enable_editor = true;
     });
+
+    window.editor = editor;
+
 </script>
 
 <input id="file-input" type="file" name="name" style="display: none;"/>

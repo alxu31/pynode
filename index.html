@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="css/style.css?version=0.9.7" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" data-name="vs/editor/editor.main" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.20.0/min/vs/editor/editor.main.min.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="js/resize.js?version=0.9.7"></script>
     <script src="js/d3_controls.js?version=0.9.7"></script>
@@ -383,19 +384,85 @@
                     </ul>
                 </div>
             </div>
-            
         </div>
-        <!--!-->
         <script> resize(); </script>
     </div>
 </div>
-<script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/ace/mode-python.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/ace/ext-language-tools.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+    // Configure paths for Monaco globally
+    var require = {
+      paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs' }
+    };
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/loader.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.nls.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs/editor/editor.main.js"></script>
+
+
 <script>
     resize();
-    var editor = ace.edit("editor");
-    editor.$blockScrolling = Infinity;
+
+    monaco.editor.defineTheme('default', {
+        "base": "vs-dark",
+        "inherit": true,
+        "rules": [
+            {
+            "token": "keyword",
+            "foreground": "FF69B4" // Hot pink for keywords
+            },
+            {
+            "token": "identifier",
+            "foreground": "FFC0CB" // Light pink for identifiers
+            },
+            {
+            "token": "string",
+            "foreground": "FFB6C1" // Lighter pink for strings
+            },
+            {
+            "token": "number",
+            "foreground": "FF1493" // Deep pink for numbers
+            },
+            {
+            "token": "type",
+            "foreground": "FF69B4" // Hot pink for types
+            },
+            {
+            "token": "comment",
+            "foreground": "EE82EE", // Violet for comments
+            "fontStyle": "italic"
+            },
+            {
+            "token": "variable",
+            "foreground": "FFC0CB" // Light pink for variables
+            },
+            {
+            "token": "function",
+            "foreground": "FF69B4" // Hot pink for functions
+            },
+            {
+            "token": "operator",
+            "foreground": "FF1493" // Deep pink for operators
+            }
+        ],
+        "colors": {
+            "editor.background": "#2E2E3E", // Dark grey background
+            "editor.foreground": "#FFC0CB", // Light pink foreground text
+            "editor.lineHighlightBackground": "#3E3E4E", // Slightly lighter grey for line highlights
+            "editor.selectionBackground": "#FF69B420", // Translucent hot pink for selection
+            "editorCursor.foreground": "#FF69B4", // Hot pink cursor
+            "editorWhitespace.foreground": "#5C5C6E" // Subtle grey for whitespace
+        }
+    });
+
+    monaco.editor.setTheme('default');
+
+    const editor = monaco.editor.create(document.getElementById('editor'), {
+        language: "python",
+        automaticLayout: true,
+    });
+
+    
     editor_exists = true;
 
     function getCode() {
@@ -404,7 +471,7 @@
 
     function setCode(src) {
         if (enable_editor) {
-            editor.setValue(src, -1);
+            editor.setValue(src);
         }
     }
 
@@ -446,26 +513,22 @@
     }
 
     if (project_src !== undefined) {
-        editor.setValue(project_src, -1);
+        editor.setValue(project_src);
     }
-    var PythonMode = ace.require("ace/mode/python").Mode;
-    editor.session.setMode(new PythonMode());
-    ace.require("ace/ext/language_tools");
-    editor.setOptions({
-        fontSize: "11pt",
-        enableBasicAutocompletion: true
-    });
 
-    editor.on("change", function () {
-        if (pynode_editor !== undefined) {
-            enable_editor = false;
-            if (pynode_editor.enable_editor) pynode_editor.setCode(editor.getValue());
-            enable_editor = true;
+    document.addEventListener('keydown', e => {
+        if (e.ctrlKey && e.key === 's') {
+            e.preventDefault();
+            
+            userSaveCode();
         }
     });
 
+    enable_editor = true;
     document.getElementById("editorBox").style.visibility = "visible";
 </script>
+
+
 <script>
     function writeOutput(data, append) {
         if (append) document.getElementById("console").innerHTML += data;
