@@ -350,38 +350,15 @@
                         </li>
                         <li>
                             <p>
-                                Import Github Gist (<a href="#gisthelp">info and help</a>) :  <input type="url" id="gisturl" placeholder="https://gist.github.com/username/83efe8c19b9dd6489167e67464030d04" /> <button onclick="loadGistFromUrl()">Load</button>
+                                Import Github Gist:  <input type="url" id="gisturl" placeholder="https://gist.github.com/username/83efe8c19b9dd6489167e67464030d04" /> <button onclick="loadGistFromUrl()">Load</button>
                             </p>
                         </li>
                     </ul>
 
                     <br>
-                    <p>Note: You can now use <a href="https://github.com/algrx/algorithmx">AlgorithmX</a> to create even better network visualizations!</p>
-                    <h1>About</h1>
-                    <p>&nbsp;</p>
-                    <p>PyNode was designed and created by <a href="https://github.com/alexsocha">Alex Socha</a>, using the following technologies:</p>
-                    <ul>
-                        <li>
-                            <p><a href="http://marvl.infotech.monash.edu/webcola/">WebCola</a> - Monash Adaptive
-                                Visualization Lab (<a href="https://github.com/tgdwyer/WebCola">GitHub</a>)</p>
-                        </li>
-                        <li>
-                            <p><a href="https://d3js.org/" target="_blank">D3.js</a> - Mike Bostock (<a
-                                    href="https://github.com/d3/d3">GitHub</a>)</p>
-                        </li>
-                        <li>
-                            <p><a href="https://maurizzzio.github.io/greuler/#/" target="_blank">greuler</a> - Mauricio
-                                Poppe (<a href="https://github.com/maurizzzio/greuler/">GitHub</a>)</p>
-                        </li>
-                        <li>
-                            <p><a href="https://brython.info/" target="_blank">Brython</a> - Kiko Correoso (<a
-                                    href="https://github.com/brython-dev/brython">GitHub</a>)</p>
-                        </li>
-                        <li>
-                            <p><a href="https://ace.c9.io/#nav=about" target="_blank">ace</a> - Ajax.org (<a
-                                    href="https://github.com/ajaxorg/ace">GitHub</a>)</p>
-                        </li>
-                    </ul>
+
+                    <p><a href="syntax.html">PyNode Syntax</a></p>
+                    
                 </div>
             </div>
         </div>
@@ -404,56 +381,63 @@
     resize();
 
     monaco.editor.defineTheme('default', {
-        "base": "vs-dark",
-        "inherit": true,
+        "base": "vs", // Light theme base
+        "inherit": true, // Inherit default rules
         "rules": [
             {
-            "token": "keyword",
-            "foreground": "FF69B4" // Hot pink for keywords
+                "token": "keyword",
+                "foreground": "C71585" // Medium violet-red for keywords
             },
             {
-            "token": "identifier",
-            "foreground": "FFC0CB" // Light pink for identifiers
+                "token": "identifier",
+                "foreground": "B03060" // Dark pink for identifiers
             },
             {
-            "token": "string",
-            "foreground": "FFB6C1" // Lighter pink for strings
+                "token": "string",
+                "foreground": "D02090" // Dark orchid for strings
             },
             {
-            "token": "number",
-            "foreground": "FF1493" // Deep pink for numbers
+                "token": "number",
+                "foreground": "A52A2A" // Brown for numbers
             },
             {
-            "token": "type",
-            "foreground": "FF69B4" // Hot pink for types
+                "token": "type",
+                "foreground": "C71585" // Medium violet-red for types
             },
             {
-            "token": "comment",
-            "foreground": "EE82EE", // Violet for comments
-            "fontStyle": "italic"
+                "token": "comment",
+                "foreground": "8B008B", // Dark magenta for comments
+                "fontStyle": "italic"
             },
             {
-            "token": "variable",
-            "foreground": "FFC0CB" // Light pink for variables
+                "token": "variable",
+                "foreground": "B03060" // Dark pink for variables
             },
             {
-            "token": "function",
-            "foreground": "FF69B4" // Hot pink for functions
+                "token": "function",
+                "foreground": "C71585" // Medium violet-red for functions
             },
             {
-            "token": "operator",
-            "foreground": "FF1493" // Deep pink for operators
+                "token": "operator",
+                "foreground": "A52A2A" // Brown for operators
             }
         ],
         "colors": {
-            "editor.background": "#2E2E3E", // Dark grey background
-            "editor.foreground": "#FFC0CB", // Light pink foreground text
-            "editor.lineHighlightBackground": "#3E3E4E", // Slightly lighter grey for line highlights
-            "editor.selectionBackground": "#FF69B420", // Translucent hot pink for selection
-            "editorCursor.foreground": "#FF69B4", // Hot pink cursor
-            "editorWhitespace.foreground": "#5C5C6E" // Subtle grey for whitespace
+            "editor.background": "#FFEBEF", // Light pink background
+            "editor.foreground": "#4B0082", // Indigo for general text
+            "editor.lineHighlightBackground": "#FFC2D1", // Soft pink for line highlights
+            "editor.selectionBackground": "#FF69B450", // Semi-transparent hot pink for selection
+            "editorCursor.foreground": "#C71585", // Medium violet-red cursor
+            "editorWhitespace.foreground": "#D8BFD8", // Thistle for whitespace
+            "editorLineNumber.foreground": "#D02090", // Dark orchid for line numbers
+            "editorLineNumber.activeForeground": "#C71585", // Medium violet-red for active line number
+            "scrollbarSlider.background": "#FFC0CB50", // Semi-transparent light pink for scrollbar
+            "scrollbarSlider.hoverBackground": "#FFC0CB80", // Slightly darker pink on hover
+            "scrollbarSlider.activeBackground": "#FF69B490" // Bright pink when active
         }
     });
+
+
 
     monaco.editor.setTheme('default');
 
@@ -582,9 +566,6 @@
 	document["restart"].bind("click", pynode_core.button_restart)
 </script>
 <script>
-    document.getElementById("run").style.backgroundColor = "#6E6E6E";
-    document.getElementById("stop").style.backgroundColor = "#6E6E6E";
-    document.getElementById("restart").style.backgroundColor = "#6E6E6E";
     document.getElementById("run").style.cursor = "pointer";
     document.getElementById("stop").style.cursor = "pointer";
     document.getElementById("restart").style.cursor = "pointer";

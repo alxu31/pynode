@@ -1,11 +1,11 @@
-/*! Total Num Colours: approx 5 */
 :root {
     --primary:#fed8e2;
-    --secondary: #ff8294;
+    --secondary: #FFA6B9;
     --tertiary: #facad8;
     --quaternary: #ffadc4;
     --quinary: #fe98a6;
-    --senary: aqua;
+    --senary: #FF4A6E;
+    --septenary: #FF6B87;
 }
 
 html {
@@ -184,7 +184,7 @@ body.pynode .pageBanner {
 }
 
 body.pynode .pageBottomWrapper {
-    height: 1000px;
+    height: 500px;
     position: relative;
 }
 
@@ -242,7 +242,7 @@ body.pynode .editorButtonBar, body.pynode_output .editorButtonBar {
 body.pynode .editorButton, body.pynode_output .editorButton {
     width: 100px;
     height: 23px;
-    background-color: #ACACAC;
+    background-color: var(--senary);
     padding-top: 7px;
     padding-left: 5px;
     color: white;
@@ -270,7 +270,7 @@ body.pynode .layoutButtonOn, body.pynode_output .layoutButtonOn {
     padding-left: 2px;
     float: left;
     margin-right: 8px;
-    background-color: #E0E0E0;
+    background-color: var(--septenary);
     box-shadow: inset 0px 0px 6px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -495,8 +495,8 @@ body.pynode .pynodeDescription {
 body.pynode code {
     font-family: monospace;
     font: 1.0rem/1.5 monospace;
-    border: 1px solid #B1B1B1;
-    background-color: #F0F0F0;
+    border: 1px solid var(--quaternary);
+    background-color: var(--primary);
     padding-left: 2px;
     padding-right: 2px;
     padding-bottom: 1px;
@@ -551,4 +551,28 @@ body .floatRight {
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+
+body.pynode .pageWholeWrapper {
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.pageWhole {
+    width: 750px;
+    margin-left: calc(50% - 425px);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.15);
+    background-color: var(--tertiary);
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    margin-top: 30px;
+}
+
+body.pynode .pageTopWrapper {
+    height: 400px;
+    height: auto;
+    position: relative;
 }
