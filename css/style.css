@@ -559,6 +559,9 @@ body.pynode .pageWholeWrapper {
     padding-bottom: 100px;
 }
 
+/* SYNTAX PAGE
+   ================================================== */
+
 .pageWhole {
     width: 750px;
     margin-left: calc(50% - 425px);
@@ -577,41 +580,43 @@ body.pynode .pageTopWrapper {
     position: relative;
 }
 
-/* Customize the main scrollbar */
+/* SCROLLBARS
+   ================================================== */
+
 ::-webkit-scrollbar {
-    width: 12px; /* Width of vertical scrollbar */
-    height: 12px; /* Height of horizontal scrollbar */
+    width: 12px;
+    height: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #FFEBEF; /* Light pink background for the track */
+    background: #FFEBEF;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #FFC0CB; /* Light pink for the scrollbar thumb */
+    background: #FFC0CB;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--quaternary); /* Bright pink on hover */
+    background: var(--quaternary);
 }
 
 ::-webkit-scrollbar-thumb:active {
-    background: var(--quinary); /* Dark pink when active */
+    background: var(--quinary);
 }
 
 .monaco-scrollable-element > .scrollbar > .slider {
-    background-color: #FFC0CB !important; /* Hot pink */
+    background-color: #FFC0CB !important;
 }
 
 .monaco-scrollable-element > .scrollbar > .slider:hover {
-    background-color: var(--quaternary) !important; /* Deep pink on hover */
+    background-color: var(--quaternary) !important;
 }
 
 .monaco-scrollable-element > .scrollbar > .slider:active {
-    background-color: var(--quinary) !important; /* Deep pink on hover */
+    background-color: var(--quinary) !important;
 }
 
 .monaco-scrollable-element > .scrollbar {
     opacity: 1 !important;
-    background-color: #FFEBEF !important; /* Light pink for scrollbar track */
+    background-color: #FFEBEF !important;
 }

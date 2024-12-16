@@ -83,7 +83,7 @@ class Node:
         self._is_pos_relative = False
         self._labels = ["", ""]
         self._size = 12
-        self._color = Color.DARK_GREY
+        self._color = Color(246,103,130)
         self._value_style = CustomStyle(13, Color.WHITE, None)
         self._label_styles = [CustomStyle(10, Color.GREY), CustomStyle(10, Color.GREY)]
         self._internal_id = pynode_core.next_global_id()
@@ -225,8 +225,8 @@ class Edge:
         self._attributes = {}
         self._priority = 0
         self._width = 2
-        self._color = Color.LIGHT_GREY
-        self._weight_style = CustomStyle(10, Color.GREY)
+        self._color = Color(255,173,196)
+        self._weight_style = CustomStyle(10, Color(254,152,166))
         self._internal_id = pynode_core.next_global_id()
 
     def source(self, target=None):

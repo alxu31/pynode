@@ -323,7 +323,7 @@
 </div>
 
 <script>
-    // Configure paths for Monaco globally
+    
     var require = {
       paths: { vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.26.1/min/vs' }
     };
@@ -337,65 +337,69 @@
     resize();
 
     monaco.editor.defineTheme('default', {
-        "base": "vs", // Light theme base
-        "inherit": true, // Inherit default rules
+        "base": "vs", // Base
+        "inherit": true,
         "rules": [
             {
                 "token": "keyword",
-                "foreground": "C71585" // Medium violet-red for keywords
+                "foreground": "C71585" // Keywords
             },
             {
                 "token": "identifier",
-                "foreground": "B03060" // Dark pink for identifiers
+                "foreground": "B03060" // Identifiers
             },
             {
                 "token": "string",
-                "foreground": "D02090" // Dark orchid for strings
+                "foreground": "D02090" // Strings
             },
             {
                 "token": "number",
-                "foreground": "A52A2A" // Brown for numbers
+                "foreground": "A52A2A" // Numbers
             },
             {
                 "token": "type",
-                "foreground": "C71585" // Medium violet-red for types
+                "foreground": "C71585" // Types
             },
             {
                 "token": "comment",
-                "foreground": "8B008B", // Dark magenta for comments
+                "foreground": "8B008B", // Comments
                 "fontStyle": "italic"
             },
             {
                 "token": "variable",
-                "foreground": "B03060" // Dark pink for variables
+                "foreground": "B03060" // Variables
             },
             {
                 "token": "function",
-                "foreground": "C71585" // Medium violet-red for functions
+                "foreground": "C71585" // Functions
             },
             {
                 "token": "operator",
-                "foreground": "A52A2A" // Brown for operators
+                "foreground": "A52A2A" // Operators
             }
         ],
         "colors": {
-            "editor.background": "#FFEBEF", // Light pink background
-            "editor.foreground": "#4B0082", // Indigo for general text
-            "editor.lineHighlightBackground": "#FFDBE9", // Soft pink for line highlights
-            "editor.selectionBackground": "#FF69B450", // Semi-transparent hot pink for selection
-            "editorCursor.foreground": "#C71585", // Medium violet-red cursor
-            "editorWhitespace.foreground": "#D8BFD8", // Thistle for whitespace
-            "editorLineNumber.foreground": "#D02090", // Dark orchid for line numbers
-            "editorLineNumber.activeForeground": "#8B008B", // Medium violet-red for active line number
-            "minimap.background": "#FFEBEF", // Light pink for minimap background
-            "minimap.selectionHighlight": "#FFC2D1", // Soft pink for minimap selection highlight
-            "minimapSlider.background": "#FFC0CB50", // Semi-transparent light pink for minimap slider
-            "minimapSlider.hoverBackground": "#FFC0CB80", // Slightly darker pink on hover
-            "minimapSlider.activeBackground": "#FF69B490" // Bright pink for active minimap slider
+            "editor.background": "#FFEBEF", // Background
+            "editor.foreground": "#4B0082", // General text
+            "editor.lineHighlightBackground": "#FFDBE9", // Line highlights
+            "editor.selectionBackground": "#FF69B450", // Selection
+            "editorCursor.foreground": "#C71585", // Cursor
+            "editorWhitespace.foreground": "#D8BFD8", // Whitespace
+            "editorLineNumber.foreground": "#D02090", // Line numbers
+            "editorLineNumber.activeForeground": "#8B008B", // Active line number
+            "minimap.background": "#FFEBEF", // Minimap background
+            "minimap.selectionHighlight": "#FFC2D1", // Minimap selection highlight
+            "minimapSlider.background": "#FFC0CB50", // Minimap slider
+            "minimapSlider.hoverBackground": "#FFC0CB80", // Minimap slider on hover
+            "minimapSlider.activeBackground": "#FF69B490", // Active minimap slider
+
+            "editorBracketMatch.background": "#FFC0CB40", // Highlight for matched brackets
+            "editorBracketMatch.border": "#FFC0CB", // Border for matched brackets
+
+            "editor.selectionHighlightBackground": "#FF69B420", // Selected content
+            "editor.selectionHighlightBorder": "#FF69B4", // Border around selection highlight
         }
     });
-
-
 
     monaco.editor.setTheme('default');
 
@@ -404,7 +408,6 @@
         automaticLayout: true,
     });
 
-    
     editor_exists = true;
 
     function getCode() {
