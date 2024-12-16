@@ -1,7 +1,7 @@
 :root {
     --primary:#fed8e2;
-    --secondary: #FFA6B9;
-    --tertiary: #facad8;
+    --secondary: #facad8;
+    --tertiary: #FFEBEF;
     --quaternary: #ffadc4;
     --quinary: #fe98a6;
     --senary: #FF4A6E;
@@ -575,4 +575,43 @@ body.pynode .pageTopWrapper {
     height: 400px;
     height: auto;
     position: relative;
+}
+
+/* Customize the main scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* Width of vertical scrollbar */
+    height: 12px; /* Height of horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #FFEBEF; /* Light pink background for the track */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #FFC0CB; /* Light pink for the scrollbar thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--quaternary); /* Bright pink on hover */
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: var(--quinary); /* Dark pink when active */
+}
+
+.monaco-scrollable-element > .scrollbar > .slider {
+    background-color: #FFC0CB !important; /* Hot pink */
+}
+
+.monaco-scrollable-element > .scrollbar > .slider:hover {
+    background-color: var(--quaternary) !important; /* Deep pink on hover */
+}
+
+.monaco-scrollable-element > .scrollbar > .slider:active {
+    background-color: var(--quinary) !important; /* Deep pink on hover */
+}
+
+.monaco-scrollable-element > .scrollbar {
+    opacity: 1 !important;
+    background-color: #FFEBEF !important; /* Light pink for scrollbar track */
 }

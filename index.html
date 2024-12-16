@@ -37,38 +37,6 @@
             return false;
         }
 
-        function editorPopup(w, h) {
-            var left = (screen.width / 2) - (w / 2);
-            var top = (screen.height / 2) - (h / 2);
-            if (pynode_editor !== undefined) {
-                pynode_editor.close()
-            }
-            pynode_editor = window.open("pynode_editor.html", "PyNode Editor", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,width=" + w + ",height=" + h + ",left=" + left + ",top=" + top);
-            pynode_editor.onbeforeunload = function () {
-                pynode_editor = undefined;
-            };
-            if (window.focus) {
-                pynode_editor.focus()
-            }
-            return false;
-        }
-
-        function consolePopup(w, h) {
-            var left = (screen.width / 2) - (w / 2);
-            var top = (screen.height / 2) - (h / 2);
-            if (pynode_console !== undefined) {
-                pynode_console.close()
-            }
-            pynode_console = window.open("pynode_console.html", "PyNode Console", "directories=no,titlebar=no,toolbar=no,location=no,status=no,menubar=no,width=" + w + ",height=" + h + ",left=" + left + ",top=" + top);
-            pynode_console.onbeforeunload = function () {
-                pynode_console = undefined;
-            };
-            if (window.focus) {
-                pynode_console.focus()
-            }
-            return false;
-        }
-
         window.onbeforeunload = function () {
             if (pynode_output !== undefined) {
                 pynode_output.close();
@@ -191,10 +159,6 @@
 
         }
 
-        // var url = window.location.href;
-        // var newUrl = url.substring(url.lastIndexOf('/') + 1).split("?")[0];
-        // window.history.pushState("object or string", "Title", "" + newUrl);
-
         function loadGistFromUrl() {
 
             const url = document.getElementById("gisturl").value;
@@ -220,10 +184,6 @@
                                 <h3>Source</h3>
                             </div>
                             <div class="appSectionEnlarge">
-                                <div class="appSectionBarIconFirst"><h3><a href="pynode_editor.html"
-                                                                           onclick="return editorPopup(800, 690)"><img
-                                        src="images/controls/resize.png" width="20" height="20"></a></h3></div>
-                                <div class="appSectionBarIconDivider"></div>
                                 <div class="appSectionBarIcon"><h3><a href=""
                                                                       onclick="document.getElementById('file-input').click(); return false;"><img
                                         src="images/controls/import.png" width="16" height="16"></a></h3></div>
@@ -305,10 +265,6 @@
                             <div class="floatLeft">
                                 <h3>Console</h3>
                             </div>
-                            <div class="appSectionEnlarge">
-                                <h3><a href="pynode_console.html" onclick="return consolePopup(800, 690)"><img
-                                        src="images/controls/resize.png" width="20" height="20"></a></h3>
-                            </div>
                         </div>
                         <div class="consoleBox">
                             <div id="console"></div>
@@ -357,7 +313,7 @@
 
                     <br>
 
-                    <p><a href="syntax.html">PyNode Syntax</a></p>
+                    <p><a href="/pynode/syntax.html">PyNode Syntax</a></p>
                     
                 </div>
             </div>
@@ -425,15 +381,17 @@
         "colors": {
             "editor.background": "#FFEBEF", // Light pink background
             "editor.foreground": "#4B0082", // Indigo for general text
-            "editor.lineHighlightBackground": "#FFC2D1", // Soft pink for line highlights
+            "editor.lineHighlightBackground": "#FFDBE9", // Soft pink for line highlights
             "editor.selectionBackground": "#FF69B450", // Semi-transparent hot pink for selection
             "editorCursor.foreground": "#C71585", // Medium violet-red cursor
             "editorWhitespace.foreground": "#D8BFD8", // Thistle for whitespace
             "editorLineNumber.foreground": "#D02090", // Dark orchid for line numbers
-            "editorLineNumber.activeForeground": "#C71585", // Medium violet-red for active line number
-            "scrollbarSlider.background": "#FFC0CB50", // Semi-transparent light pink for scrollbar
-            "scrollbarSlider.hoverBackground": "#FFC0CB80", // Slightly darker pink on hover
-            "scrollbarSlider.activeBackground": "#FF69B490" // Bright pink when active
+            "editorLineNumber.activeForeground": "#8B008B", // Medium violet-red for active line number
+            "minimap.background": "#FFEBEF", // Light pink for minimap background
+            "minimap.selectionHighlight": "#FFC2D1", // Soft pink for minimap selection highlight
+            "minimapSlider.background": "#FFC0CB50", // Semi-transparent light pink for minimap slider
+            "minimapSlider.hoverBackground": "#FFC0CB80", // Slightly darker pink on hover
+            "minimapSlider.activeBackground": "#FF69B490" // Bright pink for active minimap slider
         }
     });
 
